@@ -1,0 +1,137 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://sprites/TRAFOD Player/running_step6.png" type="Texture" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://sprites/TRAFOD Player/standing.png" type="Texture" id=3]
+[ext_resource path="res://sprites/TRAFOD Player/hit00.png" type="Texture" id=4]
+[ext_resource path="res://sprites/TRAFOD Player/spinning.png" type="Texture" id=5]
+[ext_resource path="res://sprites/TRAFOD Player/running_step2.png" type="Texture" id=6]
+[ext_resource path="res://sprites/TRAFOD Player/running_step0.png" type="Texture" id=7]
+[ext_resource path="res://sprites/TRAFOD Player/running_step4.png" type="Texture" id=8]
+[ext_resource path="res://sprites/TRAFOD Player/running_step5.png" type="Texture" id=9]
+[ext_resource path="res://sprites/TRAFOD Player/running_step1.png" type="Texture" id=10]
+[ext_resource path="res://sprites/TRAFOD Player/running_step7.png" type="Texture" id=11]
+[ext_resource path="res://sprites/TRAFOD Player/running_step3.png" type="Texture" id=12]
+[ext_resource path="res://sprites/TRAFOD Player/throwing.png" type="Texture" id=13]
+[ext_resource path="res://sprites/Sounds/fightyell.wav" type="AudioStream" id=14]
+[ext_resource path="res://sprites/Sounds/footsteps.wav" type="AudioStream" id=15]
+[ext_resource path="res://sprites/Sounds/mineralcrashwav.wav" type="AudioStream" id=16]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "idle",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 6 ), ExtResource( 12 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 1 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "run",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": false,
+"name": "throw",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": false,
+"name": "spinning",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "hit",
+"speed": 24.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 41.2041, 58.252 )
+
+[node name="Player" type="KinematicBody2D"]
+z_index = 1
+collision_mask = 22
+script = ExtResource( 2 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 1.78381, 56.5946 )
+scale = Vector2( 0.827011, 0.827011 )
+frames = SubResource( 1 )
+animation = "idle"
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -2.38419e-07, 56 )
+scale = Vector2( 0.84943, 1.06913 )
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ProjectilePosition" type="Position2D" parent="."]
+visible = false
+position = Vector2( 83.6431, 64 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = 0
+limit_top = -1408
+limit_right = 8448
+limit_bottom = 768
+smoothing_enabled = true
+editor_draw_limits = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RayCast2DFootBottomMid" type="RayCast2D" parent="."]
+cast_to = Vector2( 0, 118 )
+collision_mask = 4
+
+[node name="RayCast2DBottomRight" type="RayCast2D" parent="."]
+position = Vector2( -14.2363, 112.349 )
+rotation = -1.57079
+enabled = true
+collision_mask = 4
+collide_with_areas = true
+
+[node name="RayCast2DBottomLeft" type="RayCast2D" parent="."]
+position = Vector2( 14.4952, 112.349 )
+rotation = 1.5708
+enabled = true
+collision_mask = 4
+
+[node name="RayCast2DTopLeft" type="RayCast2D" parent="."]
+position = Vector2( 14.2476, 0 )
+rotation = 1.5708
+enabled = true
+collision_mask = 4
+
+[node name="RayCast2DTopRight" type="RayCast2D" parent="."]
+position = Vector2( -14.0317, 0 )
+rotation = -1.5708
+enabled = true
+collision_mask = 4
+
+[node name="FightSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+
+[node name="Footsteps" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+
+[node name="MineralCrash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+
+[node name="ImpulseMineralPosition" type="Position2D" parent="."]
+position = Vector2( 175.427, 15.2165 )
+
+[node name="WallJumpCooldown" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+[connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="finished" from="Footsteps" to="." method="_on_Footsteps_finished"]
+[connection signal="timeout" from="WallJumpCooldown" to="." method="_on_WallJumpCooldown_timeout"]

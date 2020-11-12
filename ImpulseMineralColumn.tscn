@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://sprites/Particles/spark.png" type="Texture" id=1]
+[ext_resource path="res://ImpulseMineralColumn.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 42.9471, 88.9181 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+lifetime_randomness = 0.1
+emission_shape = 2
+emission_box_extents = Vector3( 20, 70, 1 )
+flag_disable_z = true
+spread = 67.76
+angular_velocity = 182.07
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 72.38
+radial_accel_random = 0.26
+angle = 231.7
+angle_random = 0.13
+scale = 0.4
+scale_random = 0.87
+color = Color( 1, 0.509804, 0.00392157, 1 )
+
+[node name="ImpulseMineralColumn" type="Area2D"]
+collision_layer = 16
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+rotation = -3.14159
+amount = 15
+speed_scale = 1.69
+process_material = SubResource( 2 )
+texture = ExtResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+[connection signal="body_entered" from="." to="." method="_on_ImpulseMineralColumn_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

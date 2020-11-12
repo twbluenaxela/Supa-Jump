@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Level1_Theme - 複製 (online-audio-converter.com).wav-c9ff19dc0d535e0283573226c37c5f0a.sample"
+
+[deps]
+
+source_file="res://sprites/Sounds/Level 1/Level1_Theme - 複製 (online-audio-converter.com).wav"
+dest_files=[ "res://.import/Level1_Theme - 複製 (online-audio-converter.com).wav-c9ff19dc0d535e0283573226c37c5f0a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dawudsong.wav-7491d7ca7316c0dba5dd9bdf98a30965.sample"
+
+[deps]
+
+source_file="res://sprites/Sounds/dawudsong.wav"
+dest_files=[ "res://.import/dawudsong.wav-7491d7ca7316c0dba5dd9bdf98a30965.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

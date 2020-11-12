@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://groundtileset.tres" type="TileSet" id=2]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sprites/Backgrounds/colored_grass.png" type="Texture" id=4]
+[ext_resource path="res://ScreenShake.gd" type="Script" id=5]
+[ext_resource path="res://ChangeStage.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Gem.tscn" type="PackedScene" id=7]
+[ext_resource path="res://sprites/Sounds/Level 1/Level1_Theme - 複製 (online-audio-converter.com).wav" type="AudioStream" id=8]
+[ext_resource path="res://AntiGravMineral.tscn" type="PackedScene" id=9]
+[ext_resource path="res://ImpulseMineral.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Items/Coin.tscn" type="PackedScene" id=11]
+
+[node name="StageOne" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 296, 544 )
+scale = Vector2( 0.834883, 0.834883 )
+
+[node name="Gem" parent="." instance=ExtResource( 7 )]
+position = Vector2( 816, 589.432 )
+scale = Vector2( 0.834883, 0.834883 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 128, 128 )
+collision_layer = 4
+collision_mask = 11
+format = 1
+tile_data = PoolIntArray( -720896, 2, 0, -720831, 0, 0, -655360, 2, 0, -655295, 0, 0, -589824, 2, 0, -589759, 0, 0, -524288, 2, 0, -524223, 0, 0, -458752, 2, 0, -458687, 0, 0, -393216, 2, 0, -393151, 0, 0, -327680, 2, 0, -327667, 536870913, 0, -327666, 536870912, 0, -327665, 536870912, 0, -327664, 536870912, 0, -327663, 536870912, 0, -327662, 536870912, 0, -327661, 536870912, 0, -327660, 536870912, 0, -327659, 536870912, 0, -327658, 536870912, 0, -327657, 536870912, 0, -327656, 536870912, 0, -327655, 536870912, 0, -327654, 536870912, 0, -327653, 536870912, 0, -327652, 536870912, 0, -327651, 536870912, 0, -327650, 1, 0, -327615, 0, 0, -262144, 2, 0, -262079, 0, 0, -196608, 2, 0, -196601, 536870919, 0, -196600, 536870920, 0, -196599, 536870920, 0, -196598, 536870921, 0, -196543, 0, 0, -131072, 2, 0, -131007, 0, 0, -65536, 2, 0, -65535, 14, 0, -65534, 0, 0, -65533, 0, 0, -65532, 13, 0, -65471, 0, 0, 0, 2, 0, 65, 0, 0, 65536, 2, 0, 65543, 14, 0, 65544, 0, 0, 65545, 13, 0, 65560, 16, 0, 65561, 0, 0, 65562, 0, 0, 65563, 0, 0, 65564, 15, 0, 65601, 0, 0, 131072, 2, 0, 131086, 10, 0, 131089, 10, 0, 131092, 9, 0, 131093, 536870921, 0, 131104, 5, 0, 131105, 0, 0, 131106, 0, 0, 131107, 0, 0, 131108, 536870917, 0, 131137, 0, 0, 196608, 2, 0, 196611, 14, 0, 196612, 0, 0, 196613, 13, 0, 196639, 5, 0, 196640, 11, 0, 196641, 2, 0, 196642, 2, 0, 196643, 2, 0, 196644, 536870923, 0, 196645, 536870917, 0, 196673, 0, 0, 262144, 2, 0, 262145, 6, 0, 262153, 5, 0, 262154, 0, 0, 262155, 0, 0, 262156, 6, 0, 262174, 5, 0, 262175, 11, 0, 262176, 2, 0, 262177, 2, 0, 262178, 2, 0, 262179, 2, 0, 262180, 536870914, 0, 262181, 536870923, 0, 262182, 536870917, 0, 262209, 0, 0, 327680, 2, 0, 327681, 12, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 11, 0, 327690, 2, 0, 327691, 2, 0, 327692, 12, 0, 327693, 0, 0, 327694, 0, 0, 327695, 0, 0, 327696, 0, 0, 327697, 0, 0, 327698, 0, 0, 327699, 0, 0, 327700, 0, 0, 327701, 0, 0, 327702, 0, 0, 327703, 0, 0, 327704, 0, 0, 327705, 0, 0, 327706, 0, 0, 327707, 0, 0, 327708, 0, 0, 327709, 0, 0, 327710, 11, 0, 327711, 2, 0, 327712, 2, 0, 327713, 2, 0, 327714, 2, 0, 327715, 2, 0, 327716, 536870914, 0, 327717, 536870914, 0, 327718, 536870923, 0, 327719, 0, 0, 327720, 0, 0, 327721, 0, 0, 327722, 0, 0, 327723, 0, 0, 327724, 0, 0, 327725, 0, 0, 327726, 0, 0, 327727, 0, 0, 327728, 0, 0, 327729, 0, 0, 327730, 0, 0, 327731, 0, 0, 327732, 0, 0, 327733, 0, 0, 327734, 0, 0, 327735, 0, 0, 327736, 0, 0, 327737, 0, 0, 327738, 0, 0, 327739, 0, 0, 327740, 0, 0, 327741, 0, 0, 327742, 0, 0, 327743, 0, 0, 327744, 0, 0, 327745, 0, 0 )
+
+[node name="Enemy" parent="." instance=ExtResource( 3 )]
+position = Vector2( 584, 320 )
+size = Vector2( 2, 2 )
+
+[node name="Enemy3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1424, 448 )
+hp = 5
+
+[node name="Enemy4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2696, 192 )
+
+[node name="Enemy5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 5288, 568 )
+size = Vector2( 4, 4 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 592, 576 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2( 0.5, 0.5 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 2168, 0 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 0, -1400 )
+scale = Vector2( 2.11719, 2.11719 )
+texture = ExtResource( 4 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ScreenShake" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="Tween" type="Tween" parent="ScreenShake"]
+
+[node name="ChangeStage" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1096, 8 )
+target_stage = "res://Stages/StageTwo.tscn"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
+mix_target = 1
+
+[node name="AntiGravMineral" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1040, 568 )
+
+[node name="ImpulseMineral" parent="." instance=ExtResource( 10 )]
+position = Vector2( 704, 328 )
+
+[node name="Coin" parent="." instance=ExtResource( 11 )]
+position = Vector2( 432, 592 )
+
+[node name="Coin2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 680, 592 )
+[connection signal="tween_completed" from="ScreenShake/Tween" to="ScreenShake" method="_on_Tween_tween_completed"]
