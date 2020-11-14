@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Title Screen.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Backgrounds/exitselected.png" type="Texture" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://sprites/Backgrounds/startgame.png" type="Texture" id=5]
 [ext_resource path="res://sprites/Backgrounds/startgameselected.png" type="Texture" id=6]
 [ext_resource path="res://sprites/Backgrounds/exit.png" type="Texture" id=7]
-[ext_resource path="res://sprites/Sounds/dawudsong.wav" type="AudioStream" id=8]
 
 [node name="Title Screen" type="Node"]
 script = ExtResource( 1 )
@@ -58,9 +57,5 @@ margin_right = 448.0
 margin_bottom = 128.0
 texture_normal = ExtResource( 2 )
 texture_focused = ExtResource( 7 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
-autoplay = true
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/TextureButton2" to="." method="_on_TextureButton2_pressed"]

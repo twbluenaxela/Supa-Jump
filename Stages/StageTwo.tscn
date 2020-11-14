@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://sprites/Backgrounds/blue_grass.png" type="Texture" id=1]
 [ext_resource path="res://sprites/Spritesheets/spritesheet_ground.png" type="Texture" id=2]
@@ -7,6 +7,10 @@
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ScreenShake.gd" type="Script" id=7]
 [ext_resource path="res://WorldBorder.tscn" type="PackedScene" id=8]
+[ext_resource path="res://sprites/Items/coinGold.png" type="Texture" id=9]
+[ext_resource path="res://sprites/Sounds/coinhit.wav" type="AudioStream" id=10]
+[ext_resource path="res://Items/Coin.gd" type="Script" id=11]
+[ext_resource path="res://Stages/StageTwo.gd" type="Script" id=12]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
@@ -434,12 +438,23 @@ points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
 5/shapes = [  ]
 5/z_index = 0
 
+[sub_resource type="CircleShape2D" id=35]
+radius = 33.28
+
 [node name="StageTwo" type="Node2D"]
+script = ExtResource( 12 )
 
 [node name="ChangeStage" parent="." instance=ExtResource( 3 )]
 position = Vector2( 152, 504 )
 scale = Vector2( 0.834883, 0.834883 )
+collision_layer = 4
 target_stage = "res://Stages/StageOne.tscn"
+
+[node name="ChangeStage2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1848, 15.2166 )
+scale = Vector2( 0.834883, 0.834883 )
+collision_layer = 4
+target_stage = "res://Stages/StageThree.tscn"
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 400, 544 )
@@ -479,7 +494,6 @@ size = Vector2( 2, 2 )
 
 [node name="Enemy3" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1672.18, 63.7363 )
-size = Vector2( 2, 2 )
 
 [node name="ScreenShake" type="Node2D" parent="."]
 script = ExtResource( 7 )
@@ -488,4 +502,80 @@ script = ExtResource( 7 )
 
 [node name="WorldBorder" parent="." instance=ExtResource( 8 )]
 position = Vector2( 4496, 784 )
+
+[node name="Coin" type="Area2D" parent="."]
+position = Vector2( 322.729, 204.288 )
+collision_layer = 16
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Coin"]
+texture = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin"]
+shape = SubResource( 35 )
+
+[node name="GetCoin" type="AudioStreamPlayer" parent="Coin"]
+stream = ExtResource( 10 )
+
+[node name="Coin2" type="Area2D" parent="."]
+position = Vector2( 2357.78, 268.288 )
+collision_layer = 16
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Coin2"]
+texture = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin2"]
+shape = SubResource( 35 )
+
+[node name="GetCoin" type="AudioStreamPlayer" parent="Coin2"]
+stream = ExtResource( 10 )
+
+[node name="Coin3" type="Area2D" parent="."]
+position = Vector2( 957.69, -319.554 )
+collision_layer = 16
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Coin3"]
+texture = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin3"]
+shape = SubResource( 35 )
+
+[node name="GetCoin" type="AudioStreamPlayer" parent="Coin3"]
+stream = ExtResource( 10 )
+
+[node name="Coin4" type="Area2D" parent="."]
+position = Vector2( 571.916, -62.8578 )
+collision_layer = 16
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Coin4"]
+texture = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coin4"]
+shape = SubResource( 35 )
+
+[node name="GetCoin" type="AudioStreamPlayer" parent="Coin4"]
+stream = ExtResource( 10 )
 [connection signal="tween_completed" from="ScreenShake/Tween" to="ScreenShake" method="_on_Tween_tween_completed"]
+[connection signal="body_entered" from="Coin" to="Coin" method="_on_Coin_body_entered"]
+[connection signal="finished" from="Coin/GetCoin" to="Coin" method="_on_AudioStreamPlayer_finished"]
+[connection signal="body_entered" from="Coin2" to="Coin2" method="_on_Coin_body_entered"]
+[connection signal="finished" from="Coin2/GetCoin" to="Coin2" method="_on_AudioStreamPlayer_finished"]
+[connection signal="body_entered" from="Coin3" to="Coin3" method="_on_Coin_body_entered"]
+[connection signal="finished" from="Coin3/GetCoin" to="Coin3" method="_on_AudioStreamPlayer_finished"]
+[connection signal="body_entered" from="Coin4" to="Coin4" method="_on_Coin_body_entered"]
+[connection signal="finished" from="Coin4/GetCoin" to="Coin4" method="_on_AudioStreamPlayer_finished"]

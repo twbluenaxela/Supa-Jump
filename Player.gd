@@ -38,7 +38,8 @@ var dash_direction = Vector2(1,0)
 var can_wall_jump = false
 
 #coins
-var coin_amount = 0 
+
+
 
 func _physics_process(delta):
 	run(delta)
@@ -52,35 +53,6 @@ func _physics_process(delta):
 	has_collided_with_enemy()
 	fast_fall()
 	velocity = move_and_slide(velocity, FLOOR)
-
-
-#		if Input.is_action_just_pressed("up") && is_on_wall() == false:
-#			if is_attacking == false:
-#				if on_ground == true:
-#					velocity.y = JUMP_POWER
-#					if Input.is_action_just_released("up") and velocity.y < 0:
-#						velocity.y = 0					
-#					on_ground = false
-#			can_wall_jump = true
-
-#		if is_on_wall() && Input.is_action_pressed("right") && Input.is_action_pressed("up"):
-#			if (can_wall_jump == true)&&(is_on_floor() == false):
-#				$Sprite.flip_h = false
-#				velocity.y = JUMP_POWER
-#				velocity.x = SPEED
-#
-#				on_ground = false
-#			can_wall_jump = false
-#
-#		elif is_on_wall() && Input.is_action_pressed("left") && Input.is_action_pressed("up"):
-#			if (can_wall_jump == true)&&(is_on_floor() == false):
-#				$Sprite.flip_h = true
-#				velocity.y = JUMP_POWER
-#				velocity.x = -SPEED
-#			can_wall_jump = false
-
-
-#		velocity.y += GRAVITY
 
 
 func has_collided_with_enemy():
@@ -113,8 +85,8 @@ func run(delta):
 
 func friction():
 	#when i hold the key
-	var running = Input.is_action_pressed("left") or Input.is_action_pressed("right")
-	if not running and is_on_floor():
+#	var running = Input.is_action_pressed("left") or Input.is_action_pressed("right")
+	if not (Input.is_action_pressed("left") or Input.is_action_pressed("right")) and is_on_floor():
 		velocity.x *= STOPPING_FRICTION
 	else: 
 		velocity.x *= RUNNING_FRICTION
@@ -196,8 +168,8 @@ func dash():
 		dashing = false
 func fast_fall():
 	if not is_on_floor():
-		if Input.is_action_pressed("down"):
-			velocity.y *= -3
+		if Input.is_action_pressed("down") && velocity.y > 0:
+			velocity.y *= 3
 
 func dead():
 	is_dead = true
@@ -271,8 +243,10 @@ func impulse_launch():
 		velocity.y *= 3
 		
 func get_coin():
-	coin_amount += 1
-	print(coin_amount)
+	Global.coin_amount += 15
+#	print(Global.coin_amount)
+	#tells the score node to set the score to the global amount of coins
+	$Camera2D/HUD/Score.set_score(Global.coin_amount)
 
 func _on_Footsteps_finished():
 	pass

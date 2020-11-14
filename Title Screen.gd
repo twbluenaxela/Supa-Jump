@@ -1,9 +1,10 @@
 extends Node
 
-
+onready var TITLE_THEME = preload("res://Music/dawudsong.wav")
 
 func _ready():
 	$MarginContainer/VBoxContainer/VBoxContainer/TextureButton.grab_focus()
+	MusicController.play_music(TITLE_THEME)
 
 
 func _physics_process(delta):

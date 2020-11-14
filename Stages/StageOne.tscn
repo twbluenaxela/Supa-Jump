@@ -7,19 +7,20 @@
 [ext_resource path="res://ScreenShake.gd" type="Script" id=5]
 [ext_resource path="res://ChangeStage.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Gem.tscn" type="PackedScene" id=7]
-[ext_resource path="res://sprites/Sounds/Level 1/Level1_Theme - 複製 (online-audio-converter.com).wav" type="AudioStream" id=8]
+[ext_resource path="res://Stages/StageOne.gd" type="Script" id=8]
 [ext_resource path="res://AntiGravMineral.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ImpulseMineral.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Items/Coin.tscn" type="PackedScene" id=11]
 
 [node name="StageOne" type="Node2D"]
+script = ExtResource( 8 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 296, 544 )
 scale = Vector2( 0.834883, 0.834883 )
 
 [node name="Gem" parent="." instance=ExtResource( 7 )]
-position = Vector2( 816, 589.432 )
+position = Vector2( 688, 336 )
 scale = Vector2( 0.834883, 0.834883 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -35,8 +36,8 @@ position = Vector2( 584, 320 )
 size = Vector2( 2, 2 )
 
 [node name="Enemy3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1424, 448 )
-hp = 5
+position = Vector2( 1416, 448 )
+hp = 2
 
 [node name="Enemy4" parent="." instance=ExtResource( 3 )]
 position = Vector2( 2696, 192 )
@@ -76,20 +77,33 @@ script = ExtResource( 5 )
 position = Vector2( 1096, 8 )
 target_stage = "res://Stages/StageTwo.tscn"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
-autoplay = true
-mix_target = 1
-
 [node name="AntiGravMineral" parent="." instance=ExtResource( 9 )]
-position = Vector2( 1040, 568 )
+position = Vector2( 1864, 184 )
 
 [node name="ImpulseMineral" parent="." instance=ExtResource( 10 )]
-position = Vector2( 704, 328 )
+position = Vector2( 1728, -704 )
 
 [node name="Coin" parent="." instance=ExtResource( 11 )]
 position = Vector2( 432, 592 )
 
 [node name="Coin2" parent="." instance=ExtResource( 11 )]
 position = Vector2( 680, 592 )
+
+[node name="Coin3" parent="." instance=ExtResource( 11 )]
+position = Vector2( 1144, -440 )
+
+[node name="Coin4" parent="." instance=ExtResource( 11 )]
+position = Vector2( 376, -200 )
+
+[node name="Coin5" parent="." instance=ExtResource( 11 )]
+position = Vector2( 1184, 480 )
+
+[node name="Coin6" parent="." instance=ExtResource( 11 )]
+position = Vector2( 920, 592 )
+
+[node name="ScreenShake2" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="Tween" type="Tween" parent="ScreenShake2"]
 [connection signal="tween_completed" from="ScreenShake/Tween" to="ScreenShake" method="_on_Tween_tween_completed"]
+[connection signal="tween_completed" from="ScreenShake2/Tween" to="ScreenShake2" method="_on_Tween_tween_completed"]

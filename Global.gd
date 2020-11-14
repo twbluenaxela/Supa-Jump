@@ -8,6 +8,7 @@ extends Node
 var can_use_anti_grav_mineral = false
 var can_use_impulse_mineral = false
 var fireball_power = 1
+var coin_amount = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
